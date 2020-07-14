@@ -1,0 +1,29 @@
+version: '2.1'
+services:
+    strapi:
+      image: strapi/strapi
+      env_file: .env.local
+      environment:
+        DATABASE_CLIENT: ${DATABASE_CLIENT}
+        DATABASE_NAME: ${${DATABASE_NAME}
+        DATABASE_HOST: ${DATABASE_HOST}
+        DATABASE_PORT: ${DATABASE_PORT}
+        DATABASE_USERNAME: ${DATABASE_USERNAME}
+        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      links:
+        - mongo:mongo
+      volumes:
+        - ./app:/srv/app
+      ports:
+        - '1337:1337'
+  
+    mongo:
+        image: mongo
+        env_file: .env.local
+        environment:
+        MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USERNAME}
+        MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+        volumes:
+            - ./db:/data/db
+        ports:
+            - '27017:27017'
