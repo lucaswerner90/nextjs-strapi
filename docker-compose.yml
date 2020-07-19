@@ -1,0 +1,70 @@
+version: '2.1'
+services:
+  frontend:
+    build: ./nextjs
+    env_file: .env
+    restart: unless-stopped
+    environment: 
+      NODE_ENV: production
+      VIRTUAL_HOST: ${PRODUCTION_HOST}
+      LETSENCRYPT_HOST: ${PRODUCTION_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    expose:
+      - "3000"
+  strapi:
+    image: strapi/strapi
+    environment:
+      DATABASE_CLIENT: mongo
+      DATABASE_NAME: strapi
+      DATABASE_HOST: mongo
+      DATABASE_PORT: 27017
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      VIRTUAL_HOST: ${API_PRODUCTION_HOST}
+      LETSENCRYPT_HOST: ${PRODUCTION_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    links:
+      - mongo:mongo
+    volumes:
+      - ./strapi:/srv/app
+    expose:
+      - '1337'
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: strapi
+      MONGO_INITDB_ROOT_PASSWORD: strapi
+    volumes:
+      - ./data/db:/data/db
+    expose:
+      - '27017'
+
+  nginx-proxy:
+    restart: always
+    build: ./nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "certs:/etc/nginx/certs:ro"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      
+          
+  nginx-letsencrypt:
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nginx-letsencrypt
+    depends_on:
+      - nginx-proxy
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "certs:/etc/nginx/certs:rw"
+    
+volumes:
+  certs:

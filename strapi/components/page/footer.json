@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_footers",
+  "info": {
+    "name": "footer",
+    "icon": "angle-down"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "socialmedia": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.socialmedia"
+    }
+  }
+}

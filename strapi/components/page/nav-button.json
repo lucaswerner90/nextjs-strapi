@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_page_nav_buttons",
+  "info": {
+    "name": "NavButton",
+    "icon": "apple-alt"
+  },
+  "options": {},
+  "attributes": {
+    "info": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.button"
+    },
+    "authRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideIfLoggedIn": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

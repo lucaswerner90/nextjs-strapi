@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_page_buttons",
+  "info": {
+    "name": "button",
+    "icon": "hand-point-right"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "regex": "^\\/\\w+",
+      "default": "/"
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "_blank",
+        "_self"
+      ]
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "inherit"
+      ],
+      "default": "primary"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "contained",
+        "outlined",
+        "text"
+      ],
+      "default": "contained"
+    }
+  }
+}

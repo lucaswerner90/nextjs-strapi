@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "index_pages",
+  "info": {
+    "name": "Index Page"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "page.section"
+      ]
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.footer"
+    },
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.header"
+    }
+  }
+}

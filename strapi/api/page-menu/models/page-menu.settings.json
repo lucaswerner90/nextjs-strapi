@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_menus",
+  "info": {
+    "name": "Page Menu"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "authButtons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.button"
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "pagesButtons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.button"
+    }
+  }
+}

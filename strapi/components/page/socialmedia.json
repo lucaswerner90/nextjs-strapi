@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_page_socialmedias",
+  "info": {
+    "name": "socialmedia",
+    "icon": "at"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "icon": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
