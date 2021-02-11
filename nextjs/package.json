@@ -9,7 +9,7 @@
     "clsx": "latest",
     "framer-motion": "^1.11.1",
     "next": "latest",
-    "next-auth": "^2.2.0",
+    "next-auth": "^3.3.0",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
